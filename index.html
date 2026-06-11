@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero-section">
+    <div class="hero-content">
+      <p class="eyebrow">Travel Planner</p>
+      <h1>Plan your next adventure in minutes</h1>
+      <p>Create a custom itinerary, save trips, and explore recommended destinations.</p>
+      <a href="#planner" class="btn btn-primary">Start Planning</a>
+    </div>
+    <div class="hero-visual">
+      <div class="card-glow"></div>
+      <div class="hero-card">
+        <div class="hero-card-title">Dream Trip</div>
+        <div class="hero-card-body">
+          <div><span>Destination</span> Bali, Indonesia</div>
+          <div><span>Dates</span> Jul 10 - Jul 18</div>
+          <div><span>Budget</span> $2,500</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="planner" class="planner-section">
+      <div class="section-heading">
+        <p class="eyebrow">Plan Your Trip</p>
+        <h2>Build a simple itinerary</h2>
+      </div>
+
+      <div class="planner-grid">
+        <div class="planner-form card">
+          <h3>Travel Details</h3>
+          <form id="trip-form">
+            <label for="destination">Destination</label>
+            <input type="text" id="destination" placeholder="Enter a destination" required />
+
+            <label for="start-date">Start Date</label>
+            <input type="date" id="start-date" required />
+
+            <label for="end-date">End Date</label>
+            <input type="date" id="end-date" required />
+
+            <label for="budget">Budget ($)</label>
+            <input type="number" id="budget" placeholder="e.g. 2500" min="0" required />
+
+            <button type="submit" class="btn btn-secondary">Generate Itinerary</button>
+          </form>
+        </div>
+
+        <div class="planner-output card">
+          <div class="output-block">
+            <h3>Saved Trips</h3>
+            <div id="saved-trips">No trips saved yet.</div>
+          </div>
+          <div class="output-block">
+            <h3>Recommended Places</h3>
+            <div id="recommendations" class="recommendation-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="itinerary-section card">
+      <div class="section-heading">
+        <p class="eyebrow">Itinerary</p>
+        <h2>Your travel plan</h2>
+      </div>
+      <div id="itinerary" class="itinerary-card">
+        <p class="placeholder-text">Fill the form to generate your itinerary.</p>
+      </div>
+    </section>
+
+    <section id="about" class="info-section">
+      <div class="section-heading">
+        <p class="eyebrow">About</p>
+        <h2>Travel Planner for modern explorers</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Smart planning</h3>
+          <p>Use easy inputs to plan your trip, choose dates, and set your budget.</p>
+        </div>
+        <div class="info-card">
+          <h3>Memory saved</h3>
+          <p>Saved itineraries stay in your browser so you can revisit plans later.</p>
+        </div>
+        <div class="info-card">
+          <h3>Mobile-ready</h3>
+          <p>A responsive layout that looks great on phones, tablets, and laptops.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section card">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2>Stay in touch</h2>
+      </div>
+      <p>Have questions or want to share your travel story? Send us a message.</p>
+      <form id="contact-form">
+        <div class="contact-fields">
+          <input type="text" id="contact-name" placeholder="Your name" required />
+          <input type="email" id="contact-email" placeholder="Your email" required />
+        </div>
+        <textarea id="contact-message" rows="4" placeholder="Tell us about your trip idea" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+      <p id="contact-feedback" class="feedback-text"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Travel Planner. Designed for adventurers.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
