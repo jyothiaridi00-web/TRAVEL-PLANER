@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Travel Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-section card">
+      <div class="section-heading">
+        <p class="eyebrow">Create Account</p>
+        <h2>Join Travel Planner</h2>
+      </div>
+      <p>Create a new account and start saving your travel plans today.</p>
+      <form id="signup-form" class="auth-form">
+        <input type="email" id="email" placeholder="Email address" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+      <p id="message" class="feedback-text"></p>
+      <p>Already have an account? <a href="login.html">Login here</a>.</p>
+      <p><a href="index.html">Back to Planner</a></p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { signUp } from './firebase.js';
+
+    const signupForm = document.getElementById('signup-form');
+    const message = document.getElementById('message');
+
+    signupForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!email || !password) {
+        message.textContent = 'Please enter both email and password.';
+        return;
+      }
+
+      try {
+        await signUp(email, password);
+        message.textContent = 'Account created! Redirecting to login...';
+        setTimeout(() => { window.location.href = 'login.html'; }, 800);
+      } catch (error) {
+        message.textContent = `Sign up failed: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

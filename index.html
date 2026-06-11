@@ -12,7 +12,11 @@
       <p class="eyebrow">Travel Planner</p>
       <h1>Plan your next adventure in minutes</h1>
       <p>Create a custom itinerary, save trips, and explore recommended destinations.</p>
-      <a href="#planner" class="btn btn-primary">Start Planning</a>
+      <div class="hero-actions">
+        <a href="#planner" class="btn btn-primary">Start Planning</a>
+        <a href="login.html" class="btn btn-secondary">Login</a>
+        <a href="signup.html" class="btn btn-primary">Signup</a>
+      </div>
     </div>
     <div class="hero-visual">
       <div class="card-glow"></div>
@@ -28,6 +32,24 @@
   </header>
 
   <main>
+    <section id="login" class="login-section card">
+      <div class="section-heading">
+        <p class="eyebrow">Member Login</p>
+        <h2>Sign in or register</h2>
+      </div>
+      <p>Use any username and password to register, then continue planning your trip.</p>
+      <form id="login-form" class="login-form">
+        <input type="text" id="login-username" placeholder="Username" required />
+        <input type="password" id="login-password" placeholder="Password" required />
+        <div class="login-buttons">
+          <button type="submit" class="btn btn-primary">Login / Register</button>
+          <button type="button" id="logout-button" class="btn btn-secondary" hidden>Logout</button>
+        </div>
+      </form>
+      <p id="login-feedback" class="feedback-text"></p>
+      <p id="login-status" class="placeholder-text">Not logged in.</p>
+    </section>
+
     <section id="planner" class="planner-section">
       <div class="section-heading">
         <p class="eyebrow">Plan Your Trip</p>
@@ -62,6 +84,22 @@
           <div class="output-block">
             <h3>Recommended Places</h3>
             <div id="recommendations" class="recommendation-grid"></div>
+          </div>
+          <div class="output-block">
+            <h3>AI Trip Planner</h3>
+            <textarea id="ai-prompt" rows="3" placeholder="Describe your travel style, mood, or dream destination."></textarea>
+            <button id="ai-generate" class="btn btn-primary">Generate AI Itinerary</button>
+            <div id="ai-result" class="trip-card placeholder-text">Use the AI planner to get a customized itinerary suggestion.</div>
+          </div>
+          <div class="output-block">
+            <h3>Weather Forecast</h3>
+            <div id="weather-info" class="weather-card">
+              <p class="placeholder-text">Enter your destination and generate the itinerary to see weather details.</p>
+            </div>
+          </div>
+          <div class="output-block">
+            <h3>Destination Map</h3>
+            <div id="map" class="map-card"></div>
           </div>
         </div>
       </div>

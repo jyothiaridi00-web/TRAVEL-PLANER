@@ -95,6 +95,50 @@ button, input, textarea {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.auth-section {
+  margin: 40px auto;
+  max-width: 560px;
+  text-align: center;
+}
+
+.auth-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+}
+
+textarea#ai-prompt {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  padding: 16px;
+  color: var(--text);
+  resize: vertical;
+}
+
+#ai-result {
+  min-height: 140px;
+  display: grid;
+  gap: 12px;
+}
+
 .hero-visual {
   position: relative;
   min-height: 360px;
@@ -204,11 +248,41 @@ button, input, textarea {
 }
 
 .trip-card,
-.recommendation-card {
+.recommendation-card,
+.weather-card,
+.map-card {
   border-radius: 18px;
   padding: 18px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
+}
+
+.weather-card,
+.map-card {
+  min-height: 120px;
+  display: grid;
+  gap: 10px;
+}
+
+#map {
+  width: 100%;
+  min-height: 280px;
+  border-radius: 18px;
+}
+
+.auth-page {
+  padding: 80px 32px;
+}
+
+.weather-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+}
+
+.weather-row span {
+  color: var(--muted);
 }
 
 .recommendation-grid {
@@ -259,6 +333,42 @@ button, input, textarea {
   margin: 22px 0;
 }
 
+.login-section {
+  padding: 32px 80px;
+}
+
+.login-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+}
+
+.login-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+#login-status {
+  margin-top: 12px;
+  color: #a8ffd8;
+}
+
+.btn[disabled],
+.disabled-input {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .feedback-text {
   margin-top: 20px;
   color: #a8ffd8;
@@ -277,6 +387,7 @@ button, input, textarea {
 
 @media (max-width: 960px) {
   .hero-section,
+  .login-section,
   .planner-section,
   .itinerary-section,
   .info-section,
