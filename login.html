@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Travel Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-section card">
+      <div class="section-heading">
+        <p class="eyebrow">Login</p>
+        <h2>Welcome back to Travel Planner</h2>
+      </div>
+      <p>Sign in to access your saved trips, weather updates, and AI itinerary assistant.</p>
+      <form id="login-form" class="auth-form">
+        <input type="email" id="email" placeholder="Email address" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <p id="message" class="feedback-text"></p>
+      <p>New to Travel Planner? <a href="signup.html">Create an account</a>.</p>
+      <p><a href="index.html">Back to Planner</a></p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { signIn, getAuthErrorMessage } from './firebase.js';
+
+    const loginForm = document.getElementById('login-form');
+    const message = document.getElementById('message');
+
+    loginForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        message.textContent = 'Please enter both email and password.';
+        return;
+      }
+
+      if (password.length < 6) {
+        message.textContent = 'Password must be at least 6 characters.';
+        return;
+      }
+
+      message.textContent = 'Signing in...';
+
+      try {
+        await signIn(email, password);
+        message.textContent = 'Login successful! Redirecting...';
+        setTimeout(() => { window.location.href = 'index.html'; }, 800);
+      } catch (error) {
+        message.textContent = getAuthErrorMessage(error);
+      }
+    });
+  </script>
+</body>
+</html>
