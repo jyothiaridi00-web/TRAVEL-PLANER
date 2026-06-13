@@ -22,6 +22,7 @@ html, body {
   background: radial-gradient(circle at top, rgba(86, 197, 255, 0.12), transparent 35%),
               linear-gradient(180deg, #07101b 0%, #0b1524 100%);
   color: var(--text);
+  color-scheme: dark;
 }
 
 body {
@@ -425,6 +426,14 @@ textarea#ai-prompt {
 .nav-brand {
   font-weight: 700;
   color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-icon {
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .nav-links {

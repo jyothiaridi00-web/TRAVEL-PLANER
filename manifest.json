@@ -1,0 +1,30 @@
+{
+  "name": "AJ Travel Hub",
+  "short_name": "AJ Travel",
+  "description": "Plan trips, find nearby hotels and restaurants, check weather, and build travel itineraries.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1524",
+  "theme_color": "#0b1524",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
