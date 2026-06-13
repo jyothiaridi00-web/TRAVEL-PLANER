@@ -219,6 +219,7 @@ textarea#ai-prompt {
 }
 
 .planner-form input,
+.planner-form select,
 .contact-section input,
 .contact-section textarea {
   width: 100%;
@@ -230,6 +231,7 @@ textarea#ai-prompt {
 }
 
 .planner-form input:focus,
+.planner-form select:focus,
 .contact-section input:focus,
 .contact-section textarea:focus {
   outline: none;
@@ -397,12 +399,313 @@ textarea#ai-prompt {
   color: var(--muted);
 }
 
+.planner-form select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+}
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 80px;
+  background: rgba(7, 16, 27, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-brand {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-user {
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+}
+
+.itinerary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.itinerary-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.trip-countdown {
+  margin: 16px 0;
+}
+
+.countdown-badge {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(86, 197, 255, 0.15);
+  color: #9edfff;
+  font-weight: 600;
+}
+
+.countdown-today {
+  background: rgba(88, 214, 141, 0.15);
+  color: #9dffc8;
+}
+
+.countdown-past {
+  background: rgba(255,255,255,0.08);
+  color: var(--muted);
+}
+
+.recommendation-clickable {
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.recommendation-clickable:hover {
+  border-color: rgba(86, 197, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.recommendation-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.saved-trip-card .trip-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.saved-trip-card button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.saved-trip-card .btn-delete {
+  color: #ffb3b3;
+  border-color: rgba(255, 101, 101, 0.3);
+}
+
+.weather-forecast {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.weather-forecast-title {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+
+.forecast-day {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.forecast-day span {
+  color: var(--muted);
+}
+
+.forecast-day small {
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.packing-section {
+  padding: 60px 80px;
+}
+
+.discover-section {
+  padding: 60px 80px;
+}
+
+.discover-intro {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.discover-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.discover-tab {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.discover-tab.active {
+  background: linear-gradient(135deg, #56c5ff, #15a0ff);
+  color: #fff;
+  border-color: transparent;
+}
+
+.nearby-panel {
+  display: none;
+  gap: 12px;
+}
+
+.nearby-panel.active {
+  display: grid;
+}
+
+.poi-card {
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.poi-card:hover {
+  border-color: rgba(86, 197, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.poi-card-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.poi-distance {
+  font-size: 0.85rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.poi-subtitle {
+  margin: 6px 0 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.poi-map-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.packing-intro {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.packing-list {
+  margin-top: 24px;
+  display: grid;
+  gap: 20px;
+}
+
+.packing-list.placeholder-text {
+  display: block;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px dashed rgba(255,255,255,0.12);
+}
+
+.packing-category h4 {
+  margin: 0 0 12px;
+  color: var(--accent);
+}
+
+.packing-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.packing-items label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+}
+
+.packing-items input:checked + span {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
   gap: 24px;
   margin-top: 32px;
 }
+
 
 .info-card {
   background: rgba(255,255,255,0.04);
@@ -479,10 +782,17 @@ textarea#ai-prompt {
 }
 
 @media (max-width: 960px) {
+  .site-nav {
+    padding: 16px 32px;
+    flex-wrap: wrap;
+  }
+
   .hero-section,
   .login-section,
   .planner-section,
   .itinerary-section,
+  .discover-section,
+  .packing-section,
   .info-section,
   .contact-section {
     padding: 50px 32px;
@@ -498,6 +808,11 @@ textarea#ai-prompt {
 }
 
 @media (max-width: 700px) {
+  .nav-links {
+    width: 100%;
+    order: 3;
+  }
+
   .hero-section {
     grid-template-columns: 1fr;
   }
@@ -513,5 +828,9 @@ textarea#ai-prompt {
   .hero-card-body div {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .itinerary-header {
+    flex-direction: column;
   }
 }

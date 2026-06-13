@@ -3,17 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Travel Planner</title>
+  <title>AJ Travel Hub</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
+  <nav class="site-nav">
+    <a href="#" class="nav-brand">AJ Travel Hub</a>
+    <div class="nav-links">
+      <a href="#planner">Plan</a>
+      <a href="#discover">Discover</a>
+      <a href="#itinerary">Itinerary</a>
+      <a href="#packing">Packing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <span id="nav-user" class="nav-user">Guest</span>
+  </nav>
+
   <header class="hero-section">
     <div class="hero-content">
-      <p class="eyebrow">Travel Planner</p>
+      <p class="eyebrow">AJ Travel Hub</p>
       <h1>Plan your next adventure in minutes</h1>
-      <p>Create a custom itinerary, save trips, and explore recommended destinations.</p>
+      <p>Create a custom itinerary, pack smarter, check the forecast, and explore recommended destinations.</p>
       <div class="hero-actions">
         <a href="#planner" class="btn btn-primary">Start Planning</a>
         <a href="login.html" class="btn btn-secondary">Login</a>
@@ -74,6 +87,18 @@
             <label for="budget">Budget ($)</label>
             <input type="number" id="budget" placeholder="e.g. 2500" min="0" required />
 
+            <label for="travelers">Travelers</label>
+            <input type="number" id="travelers" placeholder="e.g. 2" min="1" max="20" value="1" required />
+
+            <label for="trip-style">Trip Style</label>
+            <select id="trip-style">
+              <option value="balanced">Balanced</option>
+              <option value="adventure">Adventure</option>
+              <option value="relaxation">Relaxation</option>
+              <option value="food">Food & Culture</option>
+              <option value="romantic">Romantic</option>
+            </select>
+
             <div id="budget-preview" class="budget-preview placeholder-text">
               Fill in destination, dates, and budget to see a live 10-day estimate.
             </div>
@@ -111,13 +136,54 @@
       </div>
     </section>
 
-    <section class="itinerary-section card">
+    <section id="discover" class="discover-section card">
       <div class="section-heading">
-        <p class="eyebrow">Itinerary</p>
-        <h2>Your travel plan</h2>
+        <p class="eyebrow">Discover Nearby</p>
+        <h2>Hotels, restaurants & must-visit places</h2>
       </div>
-      <div id="itinerary" class="itinerary-card">
+      <p class="discover-intro">Generate an itinerary to find real nearby spots powered by OpenStreetMap.</p>
+      <div class="discover-tabs">
+        <button type="button" class="discover-tab active" data-tab="hotels">Hotels</button>
+        <button type="button" class="discover-tab" data-tab="restaurants">Restaurants</button>
+        <button type="button" class="discover-tab" data-tab="attractions">Must Visit</button>
+      </div>
+      <div id="nearby-hotels" class="nearby-panel active">
+        <p class="placeholder-text">Hotels near your destination will appear here.</p>
+      </div>
+      <div id="nearby-restaurants" class="nearby-panel">
+        <p class="placeholder-text">Restaurants near your destination will appear here.</p>
+      </div>
+      <div id="nearby-attractions" class="nearby-panel">
+        <p class="placeholder-text">Must-visit places near your destination will appear here.</p>
+      </div>
+    </section>
+
+    <section id="itinerary" class="itinerary-section card">
+      <div class="section-heading itinerary-header">
+        <div>
+          <p class="eyebrow">Itinerary</p>
+          <h2>Your travel plan</h2>
+        </div>
+        <div class="itinerary-actions" id="itinerary-actions" hidden>
+          <button type="button" id="export-itinerary" class="btn btn-secondary">Export Plan</button>
+          <button type="button" id="copy-itinerary" class="btn btn-secondary">Copy to Clipboard</button>
+        </div>
+      </div>
+      <div id="trip-countdown" class="trip-countdown" hidden></div>
+      <div id="itinerary-content" class="itinerary-card">
         <p class="placeholder-text">Fill the form to generate your itinerary.</p>
+      </div>
+    </section>
+
+    <section id="packing" class="packing-section card">
+      <div class="section-heading">
+        <p class="eyebrow">Packing List</p>
+        <h2>Smart packing checklist</h2>
+      </div>
+      <p class="packing-intro">Generate a personalized packing list based on your destination, weather, and trip length.</p>
+      <button type="button" id="generate-packing" class="btn btn-primary" disabled>Generate Packing List</button>
+      <div id="packing-list" class="packing-list placeholder-text">
+        Create an itinerary first, then generate your packing checklist.
       </div>
     </section>
 
@@ -132,12 +198,20 @@
           <p>Use easy inputs to plan your trip, choose dates, and set your budget.</p>
         </div>
         <div class="info-card">
-          <h3>Memory saved</h3>
-          <p>Saved itineraries stay in your browser so you can revisit plans later.</p>
+          <h3>Packing assistant</h3>
+          <p>Get a weather-aware packing checklist tailored to your destination and trip style.</p>
         </div>
         <div class="info-card">
-          <h3>Mobile-ready</h3>
-          <p>A responsive layout that looks great on phones, tablets, and laptops.</p>
+          <h3>7-day forecast</h3>
+          <p>See upcoming weather for your destination so you can plan activities with confidence.</p>
+        </div>
+        <div class="info-card">
+          <h3>Nearby discovery</h3>
+          <p>Find hotels, restaurants, and must-visit attractions near your destination on the map.</p>
+        </div>
+        <div class="info-card">
+          <h3>Export & share</h3>
+          <p>Download or copy your full itinerary to share with travel companions.</p>
         </div>
       </div>
     </section>
@@ -161,7 +235,7 @@
   </main>
 
   <footer class="footer">
-    <p>© 2026 Travel Planner. Designed for adventurers.</p>
+    <p>© 2026 AJ Travel Hub. Designed for adventurers.</p>
   </footer>
 
   <script type="module" src="script.js"></script>
