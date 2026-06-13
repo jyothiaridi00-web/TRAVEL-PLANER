@@ -32,7 +32,34 @@
       <a href="#contact">Contact</a>
     </div>
     <span id="nav-user" class="nav-user">Guest</span>
+    <button type="button" id="install-app-btn" class="btn btn-secondary install-nav-btn" hidden>Add to Home Screen</button>
   </nav>
+
+  <div id="install-banner" class="install-banner" hidden>
+    <div class="install-banner-content">
+      <img src="icons/icon-192.png" alt="" width="40" height="40" class="install-banner-icon" />
+      <div>
+        <strong>Install AJ Travel Hub</strong>
+        <p id="install-banner-text">Add this app to your home screen for quick access.</p>
+      </div>
+    </div>
+    <div class="install-banner-actions">
+      <button type="button" id="install-banner-btn" class="btn btn-primary">Install</button>
+      <button type="button" id="install-banner-close" class="btn btn-secondary" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
+  <div id="install-ios-modal" class="install-modal" hidden>
+    <div class="install-modal-card">
+      <h3>Add to Home Screen (iPhone/iPad)</h3>
+      <ol class="install-steps">
+        <li>Tap the <strong>Share</strong> button <span class="ios-share-icon">⎋</span> in Safari.</li>
+        <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+        <li>Tap <strong>Add</strong> in the top right corner.</li>
+      </ol>
+      <button type="button" id="install-ios-close" class="btn btn-primary">Got it</button>
+    </div>
+  </div>
 
   <header class="hero-section">
     <div class="hero-content">
@@ -41,6 +68,7 @@
       <p>Create a custom itinerary, pack smarter, check the forecast, and explore recommended destinations.</p>
       <div class="hero-actions">
         <a href="#planner" class="btn btn-primary">Start Planning</a>
+        <button type="button" id="install-hero-btn" class="btn btn-secondary" hidden>Add to Home Screen</button>
         <a href="login.html" class="btn btn-secondary">Login</a>
         <a href="signup.html" class="btn btn-primary">Signup</a>
       </div>
@@ -251,5 +279,12 @@
   </footer>
 
   <script type="module" src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>

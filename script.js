@@ -60,6 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupItineraryActions();
   setupPackingList();
   setupDiscoverTabs();
+  setupInstallPrompt();
 });
 
 // Show the recommended places on the page.
@@ -1108,6 +1109,87 @@ loginForm?.addEventListener('submit', async event => {
     loginFeedback.textContent = getAuthErrorMessage(error);
   }
 });
+
+let deferredInstallPrompt = null;
+
+function isAppInstalled() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function isIosDevice() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+}
+
+function setupInstallPrompt() {
+  const installNavBtn = document.getElementById('install-app-btn');
+  const installHeroBtn = document.getElementById('install-hero-btn');
+  const installBanner = document.getElementById('install-banner');
+  const installBannerBtn = document.getElementById('install-banner-btn');
+  const installBannerClose = document.getElementById('install-banner-close');
+  const installBannerText = document.getElementById('install-banner-text');
+  const iosModal = document.getElementById('install-ios-modal');
+  const iosClose = document.getElementById('install-ios-close');
+
+  if (isAppInstalled()) return;
+
+  const showInstallUi = () => {
+    installNavBtn?.removeAttribute('hidden');
+    installHeroBtn?.removeAttribute('hidden');
+    if (!localStorage.getItem('install-banner-dismissed')) {
+      installBanner?.removeAttribute('hidden');
+    }
+  };
+
+  const hideBanner = () => {
+    installBanner?.setAttribute('hidden', '');
+    localStorage.setItem('install-banner-dismissed', '1');
+  };
+
+  const runInstall = async () => {
+    if (isIosDevice()) {
+      iosModal?.removeAttribute('hidden');
+      return;
+    }
+
+    if (!deferredInstallPrompt) return;
+
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+
+    if (outcome === 'accepted') {
+      installNavBtn?.setAttribute('hidden', '');
+      installHeroBtn?.setAttribute('hidden', '');
+      hideBanner();
+    }
+  };
+
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    if (installBannerText) {
+      installBannerText.textContent = 'Install AJ Travel Hub on your device for quick access.';
+    }
+    showInstallUi();
+  });
+
+  if (isIosDevice()) {
+    if (installBannerText) {
+      installBannerText.textContent = 'On iPhone/iPad: tap Share, then Add to Home Screen.';
+    }
+    showInstallUi();
+  }
+
+  installNavBtn?.addEventListener('click', runInstall);
+  installHeroBtn?.addEventListener('click', runInstall);
+  installBannerBtn?.addEventListener('click', runInstall);
+  installBannerClose?.addEventListener('click', hideBanner);
+  iosClose?.addEventListener('click', () => iosModal?.setAttribute('hidden', ''));
+  iosModal?.addEventListener('click', event => {
+    if (event.target === iosModal) iosModal.setAttribute('hidden', '');
+  });
+}
 
 logoutButton?.addEventListener('click', async () => {
   try {
